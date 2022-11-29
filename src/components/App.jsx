@@ -24,16 +24,17 @@ class App extends Component {
     }
   }
 
-  handleFormData = data => {
+  handleFormData = (inpName, number) => {
     for (const { name } of this.state.contacts) {
-      if (name === data.name) {
+      if (name === inpName) {
         alert(`${name} is already in contacts.`);
         return;
       }
     }
-    data.id = nanoid();
+    const id = nanoid();
+    const newContact = { name: inpName, number, id };
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, { ...data }],
+      contacts: [...prevState.contacts, { ...newContact }],
     }));
   };
 
