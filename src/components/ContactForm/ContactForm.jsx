@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import {
   FormInput,
@@ -28,7 +28,7 @@ function ContactForm({ getData }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormLabel htmlFor={nameId}>Name</FormLabel>
+      <FormLabel htmlFor={nameId.current}>Name</FormLabel>
       <FormInput
         type="text"
         name="name"
@@ -37,9 +37,9 @@ function ContactForm({ getData }) {
         required
         value={name}
         onChange={e => setName(e.target.value)}
-        id={nameId}
+        id={nameId.current}
       />
-      <FormLabel htmlFor={numberId}>Number</FormLabel>
+      <FormLabel htmlFor={numberId.current}>Number</FormLabel>
       <FormInput
         type="tel"
         name="number"
@@ -48,7 +48,7 @@ function ContactForm({ getData }) {
         required
         value={number}
         onChange={e => setNumber(e.target.value)}
-        id={numberId}
+        id={numberId.current}
       />
       <AddContactBtn type="submit">Add contact</AddContactBtn>
     </Form>

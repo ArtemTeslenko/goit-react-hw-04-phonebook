@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import { nanoid } from 'nanoid';
+import { useRef, useEffect } from 'react';
 import {
   FormLabel,
   FormInput,
@@ -8,13 +8,17 @@ import {
 import { Wrapper } from './Filter.styled';
 
 function Filter({ value, changeFilter }) {
-  const filterId = nanoid();
+  const filterId = useRef();
+
+  useEffect(() => {
+    filterId.current = nanoid();
+  }, []);
 
   return (
     <Wrapper>
-      <FormLabel htmlFor={filterId}>Find contats by name</FormLabel>
+      <FormLabel htmlFor={filterId.current}>Find contats by name</FormLabel>
       <FormInput
-        id={filterId}
+        id={filterId.current}
         name="filter"
         value={value}
         onChange={changeFilter}
